@@ -20,3 +20,4 @@ npm run preview
 
 No environment variables are required.
 
+Latest production concept build is deployed through Vercel.
