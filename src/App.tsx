@@ -30,6 +30,30 @@ const capabilities = [
   },
 ] as const;
 
+type StoryStep = {
+  label: "Challenge" | "Scope" | "Execution" | "Result";
+  copy: string;
+};
+
+function ProjectStory({
+  title,
+  steps,
+}: {
+  title: string;
+  steps: readonly StoryStep[];
+}) {
+  return (
+    <div className="rm-project-story" aria-label={`${title} project delivery`}>
+      {steps.map((step) => (
+        <div key={step.label}>
+          <strong>{step.label}</strong>
+          <p>{step.copy}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <main className="rm-site">
@@ -166,10 +190,57 @@ export default function App() {
         </aside>
       </section>
 
+      <section className="rm-value" aria-labelledby="rm-value-title">
+        <header className="rm-value-head">
+          <div className="rm-section-index">
+            <span>03</span>
+            <p>A company-controlled record</p>
+          </div>
+          <h2 id="rm-value-title">
+            Your work already speaks for itself.
+            <br />
+            <em>Make it easier to see.</em>
+          </h2>
+          <p>
+            One clear source of truth can carry R &amp; M&apos;s public record from a
+            referral or bid invitation into a faster, more confident review.
+          </p>
+        </header>
+        <div className="rm-value-list">
+          <article>
+            <span>01</span>
+            <h3>Public track record</h3>
+            <p>
+              Bring project history now spread across county records, council
+              packets and construction updates into one credible record owned and
+              maintained by R &amp; M.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Bid readiness</h3>
+            <p>
+              Give agencies, architects and commercial partners one place to review
+              capabilities, relevant work, service region and direct contact details
+              after an RFQ, RFP, invite to bid or referral.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Professional verification</h3>
+            <p>
+              When someone encounters R &amp; M through procurement documents,
+              project partners or search, they can verify the company through a
+              formal source R &amp; M controls.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section className="rm-work" id="work">
         <header className="rm-section-head">
           <div className="rm-section-index light">
-            <span>03</span>
+            <span>04</span>
             <p>Selected public work</p>
           </div>
           <h2>Proof is in the work.</h2>
@@ -191,6 +262,27 @@ export default function App() {
               Modernizing a historic gathering place while improving access,
               safety and long-term public use.
             </p>
+            <ProjectStory
+              title="Taos Plaza"
+              steps={[
+                {
+                  label: "Challenge",
+                  copy: "Renovate a historic public gathering place while addressing access, grade transitions, work sequencing and site safety.",
+                },
+                {
+                  label: "Scope",
+                  copy: "Old-concrete removal, electrical tracing, drainage clearing, rebar and formwork, plus new ramps and improved standing areas.",
+                },
+                {
+                  label: "Execution",
+                  copy: "Public updates document demolition → drainage and electrical preparation → rebar and form-building → construction of access improvements.",
+                },
+                {
+                  label: "Result",
+                  copy: "Work advanced from demolition into build mode, with public updates reporting visible progress toward a safer and more inclusive Plaza.",
+                },
+              ]}
+            />
             <dl>
               <div>
                 <dt>Location</dt>
@@ -222,17 +314,38 @@ export default function App() {
               <p className="rm-project-number">02 / Critical equipment</p>
               <h3>Ice Rink Chiller</h3>
               <p className="rm-project-lede">
-                Crane, rigging and facility coordination for placement of a
-                20,000-pound permanent chiller.
+                Design-build delivery of a long-term industrial refrigeration
+                replacement and mechanical-room upgrades.
               </p>
+              <ProjectStory
+                title="Los Alamos Ice Rink Chiller"
+                steps={[
+                  {
+                    label: "Challenge",
+                    copy: "Replace a 21-year-old refrigeration plant affected by recurring failures, discontinued parts and seasonal reliability risk.",
+                  },
+                  {
+                    label: "Scope",
+                    copy: "Custom ammonia refrigeration system, mechanical-room code upgrades, labor, materials, equipment, testing, startup and one year of maintenance.",
+                  },
+                  {
+                    label: "Execution",
+                    copy: "County records define a staged path: design → long-lead procurement → production and quality control → delivery, installation and startup.",
+                  },
+                  {
+                    label: "Result",
+                    copy: "A responsive design-build agreement and delivery plan intended to restore dependable ice-making for the 2025–2026 season.",
+                  },
+                ]}
+              />
               <dl>
                 <div>
                   <dt>Location</dt>
                   <dd>Los Alamos, NM</dd>
                 </div>
                 <div>
-                  <dt>Contract</dt>
-                  <dd>$2.70M NTE + GRT</dd>
+                  <dt>Agreement ceiling</dt>
+                  <dd>$2.708M NTE + GRT</dd>
                 </div>
               </dl>
               <a
@@ -254,9 +367,30 @@ export default function App() {
               <p className="rm-project-number">03 / New infrastructure</p>
               <h3>Municipal EV</h3>
               <p className="rm-project-lede">
-                Site, concrete, material and construction management for six
-                dual-port Level 2 charging stations.
+                Materials, labor and construction management for six municipal
+                Level 2 charging stations.
               </p>
+              <ProjectStory
+                title="Municipal EV Charging Infrastructure"
+                steps={[
+                  {
+                    label: "Challenge",
+                    copy: "Add public and fleet charging at an active municipal site while addressing accessibility, vehicle protection and emergency shutoff requirements.",
+                  },
+                  {
+                    label: "Scope",
+                    copy: "R & M's approved task order covers the materials, labor and management required to construct six charging stations.",
+                  },
+                  {
+                    label: "Execution",
+                    copy: "County teams completed the site, concrete and power design; R & M's proposal was reviewed under the on-call agreement and selected for construction delivery.",
+                  },
+                  {
+                    label: "Result",
+                    copy: "Planned capacity is twelve charging spaces served by six dual-port chargers for public and County fleet use.",
+                  },
+                ]}
+              />
               <dl>
                 <div>
                   <dt>Capacity</dt>
@@ -282,7 +416,7 @@ export default function App() {
       <section className="rm-capabilities" id="services">
         <header>
           <div className="rm-section-index">
-            <span>04</span>
+            <span>05</span>
             <p>How we deliver</p>
           </div>
           <h2>One accountable path from scope to closeout.</h2>
@@ -354,11 +488,27 @@ export default function App() {
             <small>Construction, LLC</small>
           </div>
           <p>PO Box 1026 · Alcalde, New Mexico 87511</p>
-          <p>Unofficial website concept · Not affiliated with or endorsed by R &amp; M Construction, LLC.</p>
+          <p>Not an official company website · Not affiliated with or endorsed by R &amp; M Construction, LLC.</p>
         </footer>
       </section>
+
+      <aside className="rm-concept-next" aria-label="Private concept next step">
+        <div>
+          <p>Private concept / prepared for Robert</p>
+          <h2>Like this direction?</h2>
+        </div>
+        <p>
+          This private concept was created using publicly available R &amp; M project
+          information. It can become an official, company-controlled website using
+          R &amp; M&apos;s original project photography, logo, certifications and current
+          company details.
+        </p>
+        <a href="mailto:Robert@rmconstructionnm.com?subject=Continue%20the%20R%20%26%20M%20website%20concept">
+          Continue this concept <span aria-hidden="true">↗</span>
+        </a>
+        <small>Not an official company website.</small>
+      </aside>
     </main>
   );
 }
-
 
