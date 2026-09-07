@@ -1480,14 +1480,17 @@ select {
 
 @media (max-width: 640px) {
   .rm-concept-bar {
-    min-height: 58px;
+    min-height: 72px;
     grid-template-columns: 1fr;
     gap: 0.12rem;
     align-content: center;
   }
 
   .rm-concept-bar span {
-    display: none;
+    display: block;
+    justify-self: center;
+    font-size: 0.5rem;
+    font-weight: 800;
   }
 
   .rm-concept-bar b {
@@ -1499,11 +1502,10 @@ select {
   }
 
   .rm-nav {
-    top: 58px;
+    top: 72px;
   }
 
   .rm-coordinate {
-    top: 159px;
+    top: 173px;
   }
 }
-
